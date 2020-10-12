@@ -18,6 +18,10 @@ body, html{
   width: device-width;
 }
 
-/* .container{
-  background-image: linear-gradient(to bottom, #ffffff, #E7FFF5);
-} */
+.flickity-button{
+  display: none;
+}
+
+.carousel{
+  outline: none;
+}
