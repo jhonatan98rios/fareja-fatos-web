@@ -1,0 +1,23 @@
+@import "./abstract/colors";
+@import "./abstract/spacing";
+@import "./abstract/typography";
+
+@import "./utils/spacing";
+
+
+*{
+  margin: 0 auto;
+  padding: 0;
+}
+
+body, html{
+  overflow-x: hidden;
+}
+
+@-ms-viewport{
+  width: device-width;
+}
+
+/* .container{
+  background-image: linear-gradient(to bottom, #ffffff, #E7FFF5);
+} */
