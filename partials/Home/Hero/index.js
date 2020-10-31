@@ -6,7 +6,7 @@ export default function Hero({content}) {
       <div className={css.banner}>
         <h2 className={css.title}> {content.title} </h2>
         <p className={css.subtitle}> {content.subtitle} </p>
-        <a href="/fareja-fatos.apk" className={css.button}> Faça já o download do App </a>
+        <a href="https://forms.gle/ohrr742kPA4Zis5n6" className={css.button} target="_blank" rel="noopener"> Faça já o download do App </a>
       </div>
     </div>
   )
