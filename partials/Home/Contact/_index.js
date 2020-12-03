@@ -11,6 +11,31 @@ export default function Contact({content}) {
   const [mail, setMail] = useState('');
   const [message, setMessage] = useState('');
   const [isOpened, setIsOpen] = useState(false)
+  
+  /* function sendData(){
+
+    if(name.length < 3){ 
+      alert("Nome inválido")
+      return
+    }else if(mail.length < 3){
+      alert("Email inválido")
+      return
+    }else if(message.length < 3){
+      alert("Mensagem inválida")
+      return
+    }
+
+    const templateParams = {
+      mail,
+      notes: message
+    };
+    
+    emailjs.send('', '', templateParams, '')
+      .then(function(response) {
+        
+        
+      }, function(error) {  });
+  } */
 
   function closeModal(){
     setIsOpen(false)
@@ -19,35 +44,12 @@ export default function Contact({content}) {
   function sendEmail(e) {
     e.preventDefault();
 
-    if(name.length <= 0 || mail.length <= 0 || message.length <= 0){
-      alert('Preencha o formulário antes de enviar o email')
-      return false
-    }
-
-    axios.post('https://api.emailjs.com/api/v1.0/email/send', {
-      /* API config */
-      service_id: 'service_0bvhix9',
-      template_id: 'template_s2yx4ut',
-      user_id: 'user_ZH0PszSYl2w1eUa4CWDMz',
-
-      /* Email body */
-      template_params: {
-        'username': name,
-        'mail': mail,
-        'message': message
-      }
-    })
-    .then(function (response) {
-      setIsOpen(true)
-      setName('')
-      setMail('')
-      setMessage('')
-
-    })
-    .catch(function (error) {
-      console.log(error);
-      
-    });
+    emailjs.sendForm('service_0bvhix9', 'template_s2yx4ut', e.target, 'user_ZH0PszSYl2w1eUa4CWDMz')
+      .then((result) => {
+        console.log('SUCCESS!', result.status, result.text)
+      }, (error) => {
+        console.log('FAILED...', error)
+      });
   }
 
   return (
@@ -58,21 +60,18 @@ export default function Contact({content}) {
         <input 
           type="text" 
           placeholder="Nome" 
-          value={name} 
-          onChange={ (event)=> setName( event.target.value ) } 
+          name="user_name"
         />
 
         <input 
           type="email" 
           placeholder="Email" 
-          value={mail} 
-          onChange={ (event)=> setMail( event.target.value ) } 
+          name="user_email"
         />
 
         <textarea 
           placeholder="Insira aqui sua mensagem" 
-          value={message} 
-          onChange={ (event)=> setMessage( event.target.value ) } 
+          name="message"
         />
 
         <input 
